@@ -48,8 +48,8 @@ td {
 }
 .images {
   float: left;
-  width:  $image_height - 25px;
-  height:  $image_width;
+  width:  $image_width;
+  height:  $image_height - 25px; // for the slider
   background: #fff;
   -moz-box-shadow: 0 2px 6px rgba(0,0,0,.39); /* drop shadow */
   -webkit-box-shadow: 0 2px 6px rgba(0,0,0,.39); /* drop shadow */
