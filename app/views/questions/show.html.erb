@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Question:</b>
+  <%= @question.question %>
+</p>
+
+<p>
+  <b>Answer:</b>
+  <%= @question.answer %>
+</p>
+
+<p>
+  <b>Set:</b>
+  <%= @question.set %>
+</p>
+
+<p>
+  <b>Set:</b>
+  <%= @question.set_id %>
+</p>
+
+<p>
+  <b>Ip:</b>
+  <%= @question.ip %>
+</p>
+
+<p>
+  <b>Starttime:</b>
+  <%= @question.starttime %>
+</p>
+
+
+<%= link_to 'Edit', edit_question_path(@question) %> |
+<%= link_to 'Back', questions_path %>

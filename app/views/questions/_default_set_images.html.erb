@@ -1,0 +1,9 @@
+<div class="set" id="<%= set %>">
+	<div class="wrapper pad">
+		<%= render :partial => "layouts/slideshow", :locals => { :images => images } %>
+		<div class="description">
+			<%= raw(description.html_safe) %>
+		</div>
+	</div>
+	<%= render :partial => "questions/qalist", :locals => { :questions => questions } %>
+</div>

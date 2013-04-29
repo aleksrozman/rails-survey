@@ -1,0 +1,9 @@
+<div class="images">
+	<div class="slider-wrapper theme-light">
+		<div id="slider" class="nivoSlider">
+			<% images.each do |image| %>
+			<%= image_tag "#{image.split('images/').last}" %>
+			<% end %>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,14 @@
+<form action="/random" method="post" id="next" style="display:none">
+	<% if params[:complete] %>
+	<% params[:complete].each do |a| %>
+	<input type="hidden" name="complete[]" value="<%= a %>">
+	<% end %>
+	<% end %>
+	<input type="hidden" name="complete[]" value="<%= set %>">
+</form>
+
+<script type="text/javascript">
+	function onComplete() {
+		$("#next").submit();
+	}
+</script>

@@ -1,0 +1,50 @@
+<div id='question<%= id %>' class="qa">
+	<div class='question'>
+		<%= question %>
+	</div>
+	<div class='answer'>
+		<div class="outer-center">
+			<div class="inner-center">
+				<table border=0>
+					<% case type
+					when Settings.checkbox %>
+					<% answer.each_with_index do |ans,idx| %>
+					<tr>
+						<td>
+						<input type="checkbox" value="<%= ans %>" id="<%= "q_#{id}_#{idx}" %>" <%= if ans == Settings.other then "onchange='" + Settings.replaceother + "(this)'" end %>/>
+						</td>
+						<td align="left"><label for="<%= "q_#{id}_#{idx}" %>"><%= ans %></label></td>
+					</tr>
+					<% end %>
+					<tr>
+						<td colspan="2" align="center" <%= if mobile_device? then "style='padding-top:2em'" end %>>
+						<input type="button" class="white button" onclick="<%= if defined?(func) and func then func + ";" end %><%= Settings.checkbox %>(this)" value="Submit" />
+						</td>
+					</tr>
+					<% when Settings.textbox %>
+					<% answer.each_with_index do |ans,idx| %>
+					<tr>
+						<% if ans %>
+						<td><%= ans %></td>
+						<% end %>
+						<td>						<textarea class="textbox" <%= (ans == "") ? "rows='3' cols='50'" : "" %>></textarea></td>
+					</tr>
+					<% end %>
+					<tr>
+						<td colspan="2" align="center" <%= if mobile_device? then "style='padding-top:2em'" end %>>
+						<input type="button" class="white button" onclick="<%= if defined?(func) and func then func + ";" end %><%= Settings.textbox %>(this)" value="Submit" />
+						</td>
+					</tr>
+					<% else %>
+					<tr>
+						<td> <% answer.each do |ans| %>
+						<input type="button" class="white button" value="<%= ans %>" onclick="<%= if defined?(func) and func then func + ";" end %><%= Settings.button %>(this)" />
+						<% end %> </td>
+					</tr>
+					<% end %>
+				</table>
+			</div>
+		</div>
+		<div class="clear"></div>
+	</div>
+</div>

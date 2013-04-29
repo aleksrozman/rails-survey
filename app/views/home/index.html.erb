@@ -1,0 +1,53 @@
+<%
+ @questions = [ {
+# This demonstrates a regular question, with a javascript action
+# which has been predefined to skip upon an answer
+:q => "Sample question, would you like to skip over the next?",
+:a => ["Yes", "No"],
+:s => Settings.skipconditional + "(this,'Yes',2,1)",
+} , {
+# This demonstrates the other field
+:q => "Not skipping, how is your day?",
+:a => ["Good", "Bad", "Ugly", Settings.other],
+} , {
+# This demonstates the checkboxes as well as the other field
+:q => "How is your day?",
+:a => ["Good", "Bad", "Ugly", Settings.other],
+:t => Settings.checkbox,
+} , {
+# This demonstates multiple text boxes and their labels
+:q => "What is new?",
+:a => ["First:", "Second:"],
+:t => Settings.textbox,
+} , {
+# This demonstrates a large text box
+:q => "Can you describe more?",
+:a => [""],
+:t => Settings.textbox,
+} ]
+%>
+<% content_for :title do %>
+<%= Settings.name %> Survey
+<% end %>
+<% content_for :header do %>
+<%= Settings.name %> Survey - Index
+<% end %>
+<% content_for :footer do %>
+<%= render "layouts/default_footer" %>
+<% end %>
+<% if mobile_device? %>
+<div>Disclaimer: Mobile is still in development. You may have to scroll around if you dont see a question. </div>
+<% end %>
+<div class="set" id="intro">
+		<%= render :partial => "questions/qalist", :locals => { :questions => @questions } %>
+</div>
+
+<script type="text/javascript">
+/* Upon success, the function onComplete is called
+ * You should overwrite it to do whatever you need such
+ * as take you to the next page
+ */
+	function onComplete() {
+		window.location = "/random";
+	}
+</script>

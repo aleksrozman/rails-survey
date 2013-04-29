@@ -1,0 +1,5 @@
+<div class="qalist">
+<% questions.each_with_index do |q, idx| %>
+<%= render :partial => "questions/question", :locals => { :id => idx, :question => q[:q], :answer => q[:a], :func => q[:s], :type => q[:t] } %>
+<% end %>
+</div>

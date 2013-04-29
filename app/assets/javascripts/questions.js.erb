@@ -1,0 +1,120 @@
+var skip = 1;
+
+$(document).ready(function() {
+	$('div.qa').first().show();
+});
+
+function submitIt(element, answer) {
+	var parent = element.parents("div.qa:eq(0)");
+	var id = getQuestionId(element);
+	var set = element.parents("div.set:eq(0)").attr('id');
+	var question = parent.children(".question").text();
+
+	$.ajax({
+		url : "/questions",
+		type : "POST",
+		data : {
+			question : {
+				question : question,
+				answer : answer,
+				set : set,
+				set_id : id,
+			}
+		},
+		success : function(resp) {
+			parent.fadeOut('slow', function() {
+				var next = $('div#question' + (parseInt(id) + skip));
+				skip = 1;
+				if (next.length) {
+					next.fadeIn();
+				} else {
+					onComplete();
+				}
+			});
+		},
+		error : function(resp) {
+			alert('An unknown error has occured, please try again');
+		}
+	});
+}
+
+/*
+ * Types
+ * ----------------------------------------------------
+ */
+
+function <%= Settings.checkbox %>(element) {
+	var parent = $(element).parents("table:eq(0)");
+	var text = parent.find("input:checkbox:checked").map(function() {
+		return this.value;
+	}).get().join(";");
+	if (parent.find("input[type=text]").length) {
+		text += ((text.length) ? ";" : "" ) + parent.find("input[type=text]").first().val();
+	}
+	submitIt($(element), text);
+}
+
+function <%= Settings.textbox %>(element) {
+	submitIt($(element), $(element).parents("table:eq(0)").find("textarea").map(function() {
+		return this.value;
+	}).get().join(";"));
+}
+
+function <%= Settings.button %>(element) {
+	if (isOther(element)) {
+		var newid = getQuestionId($(element)) + "_other";
+		var click = $(element).attr('onclick');
+		click = (click) ? click.replace("this", "$('#" + newid + "')") + ";" : '';
+		$(element).parent().append('<input id="' + newid + '" type="text" value="" class="white other_box" ><input type="button" onclick="' + click + 'submitIt($(\'#' + newid + '\'), $(\'#' + newid + '\').val())" value=">" class="white other_button">');
+		$(element).remove();
+		$("#" + newid).focus();
+	} else {
+		submitIt($(element), grabText(element));
+	}
+}
+
+/*
+ * Helpers
+ * ----------------------------------------------------
+ */
+
+function getQuestionId(element) {
+	return parseInt(element.parents("div.qa:eq(0)").attr('id').slice(8));
+	// 8 = size of "question"
+}
+
+function setSkip(newval) {
+	skip = newval;
+}
+
+function setSkipConditional(element, condition, whenTrue, whenFalse) {
+	if (grabText(element) === condition) {
+		setSkip(whenTrue);
+	} else {
+		setSkip(whenFalse);
+	}
+}
+
+function isOther(element) {
+	return (grabText(element) === otherVariableName);
+}
+
+function grabText(element) {
+	var text = $(element).text();
+	if (text.length == 0)
+		text = $(element).val();
+	return text.trim();
+}
+
+function <%= Settings.replaceOther %>(element) {
+	if (isOther(element)) {
+		$("label[for='" + $(element).attr('id') + "']").remove();
+		var newe = $(element).clone();
+		newe.attr('type', 'text').attr('onchange', '')
+		newe.insertAfter(element).prev().remove();
+		newe.val("");
+		newe.parent().attr('colspan', '2');
+		newe.show();
+		newe.focus();
+	}
+}

@@ -1,0 +1,85 @@
+// Place all the styles related to the questions controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+// Gray background is a gradient -- top == 0%, middle == 50%, bottom == 100%
+$gray_background_top_color:    #F6F6F6;
+$gray_background_middle_color: #FAFAFA;
+$gray_background_bottom_color: #FAFAFA;
+// The bottom border on the gray backgrounds
+$gray_background_border_color: #C4C4C4;
+
+$image_height: 300px;
+$image_width: 300px;
+// Button colors/background/border
+
+.answer {
+  background: white;
+}
+.question {
+  background: whiteSmoke;
+  border-bottom: 1px solid $gray_background_border_color;
+  border-top: 1px solid $gray_background_border_color;
+  padding: 10px;
+}
+.outer-center {
+  float: right;
+  right: 50%;
+  position: relative;
+}
+.inner-center {
+  float: right;
+  right: -50%;
+  position: relative;
+}
+.clear {
+  clear: both;
+}
+td {
+  text-align: left;
+}
+.qa {
+  background: white;
+  display: none;
+}
+.qalist {
+  background: white;
+  text-align: center;
+}
+.images {
+  float: left;
+  width:  $image_height - 25px;
+  height:  $image_width;
+  background: #fff;
+  -moz-box-shadow: 0 2px 6px rgba(0,0,0,.39); /* drop shadow */
+  -webkit-box-shadow: 0 2px 6px rgba(0,0,0,.39); /* drop shadow */
+  box-shadow: 0 2px 6px rgba(0,0,0,.39); /* drop shadow */
+}
+.set {
+  margin: 0px;
+  padding: 0px;
+}
+
+.description {
+  padding: 20px 0px 20px 30px;
+  float: left;
+  width:  $image_width  - 50px;
+  height:  $image_height  - 50px;
+  overflow: auto;
+}
+.pad {
+  padding: 20px 0 20px 0px;
+}
+
+.other_box {
+  padding: 0.35em 1em 0.45em;
+}
+.other_button {
+  margin-left: -9px;
+  color: gray;
+}
+
+/* Extras
+ * -------------------------------
+ */
+

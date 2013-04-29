@@ -1,0 +1,19 @@
+<% content_for :title do %>
+<%= Settings.name %> Survey - <%= @set %>
+<% end %>
+<% content_for :header do %>
+<%= Settings.name %> Survey - <%= @set%>
+<% end %>
+<% content_for :footer do %>
+<%= render "layouts/default_footer" %>
+<% end %>
+
+<%= 
+render :partial => "questions/default_set_images", :locals => {
+:set => @set.html_safe.gsub(" ", "_"),
+:questions => @default_questions,
+:images => @images,
+:description => @description
+}
+%>
+<%= render :partial => "nextform", :locals => {:set => @set } %>
