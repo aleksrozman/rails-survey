@@ -18,10 +18,8 @@
 *.class
 *.pyc
 *.pyo
-db/migrate
 .DS_Store
 .rake_tasks~
-config/database.yml
 doc/api
 vendor/gems/*
 !vendor/gems/cache
