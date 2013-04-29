@@ -4,26 +4,26 @@
 # which has been predefined to skip upon an answer
 :q => "Sample question, would you like to skip over the next?",
 :a => ["Yes", "No"],
-:s => Settings.skipconditional + "(this,'Yes',2,1)",
+:s => SKIP_CONDITIONAL + "(this,'Yes',2,1)",
 } , {
 # This demonstrates the other field
 :q => "Not skipping, how is your day?",
-:a => ["Good", "Bad", "Ugly", Settings.other],
+:a => ["Good", "Bad", "Ugly", OTHER],
 } , {
 # This demonstates the checkboxes as well as the other field
 :q => "How is your day?",
-:a => ["Good", "Bad", "Ugly", Settings.other],
-:t => Settings.checkbox,
+:a => ["Good", "Bad", "Ugly", OTHER],
+:t => CHECKBOX,
 } , {
 # This demonstates multiple text boxes and their labels
 :q => "What is new?",
 :a => ["First:", "Second:"],
-:t => Settings.textbox,
+:t => TEXTBOX,
 } , {
 # This demonstrates a large text box
 :q => "Can you describe more?",
 :a => [""],
-:t => Settings.textbox,
+:t => TEXTBOX,
 } ]
 %>
 <% content_for :title do %>

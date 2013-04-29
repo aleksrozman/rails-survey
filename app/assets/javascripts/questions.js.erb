@@ -43,7 +43,7 @@ function submitIt(element, answer) {
  * ----------------------------------------------------
  */
 
-function <%= Settings.checkbox %>(element) {
+function <%= CHECKBOX %>(element) {
 	var parent = $(element).parents("table:eq(0)");
 	var text = parent.find("input:checkbox:checked").map(function() {
 		return this.value;
@@ -54,13 +54,13 @@ function <%= Settings.checkbox %>(element) {
 	submitIt($(element), text);
 }
 
-function <%= Settings.textbox %>(element) {
+function <%= TEXTBOX %>(element) {
 	submitIt($(element), $(element).parents("table:eq(0)").find("textarea").map(function() {
 		return this.value;
 	}).get().join(";"));
 }
 
-function <%= Settings.button %>(element) {
+function <%= BUTTON %>(element) {
 	if (isOther(element)) {
 		var newid = getQuestionId($(element)) + "_other";
 		var click = $(element).attr('onclick');
@@ -96,7 +96,7 @@ function setSkipConditional(element, condition, whenTrue, whenFalse) {
 }
 
 function isOther(element) {
-	return (grabText(element) === otherVariableName);
+	return (grabText(element) === "<%= OTHER %>");
 }
 
 function grabText(element) {
@@ -106,7 +106,7 @@ function grabText(element) {
 	return text.trim();
 }
 
-function <%= Settings.replaceOther %>(element) {
+function <%= REPLACE_OTHER %>(element) {
 	if (isOther(element)) {
 		$("label[for='" + $(element).attr('id') + "']").remove();
 		var newe = $(element).clone();

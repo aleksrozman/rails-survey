@@ -16,11 +16,11 @@ class HomeController < ApplicationController
       }, {
       :q => "Second question, check it:",
       :a => ["Yes", "No", "Maybe"],
-      :t => Settings.checkbox,
+      :t => CHECKBOX,
       }, {
       :q => "Third question, tell me more:",
       :a => [""],
-      :t => Settings.textbox,
+      :t => TEXTBOX,
       } ]
   end
 

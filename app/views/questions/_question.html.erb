@@ -7,21 +7,21 @@
 			<div class="inner-center">
 				<table border=0>
 					<% case type
-					when Settings.checkbox %>
+					when CHECKBOX %>
 					<% answer.each_with_index do |ans,idx| %>
 					<tr>
 						<td>
-						<input type="checkbox" value="<%= ans %>" id="<%= "q_#{id}_#{idx}" %>" <%= if ans == Settings.other then "onchange='" + Settings.replaceother + "(this)'" end %>/>
+						<input type="checkbox" value="<%= ans %>" id="<%= "q_#{id}_#{idx}" %>" <%= if ans == OTHER then "onchange='" + REPLACE_OTHER + "(this)'" end %>/>
 						</td>
 						<td align="left"><label for="<%= "q_#{id}_#{idx}" %>"><%= ans %></label></td>
 					</tr>
 					<% end %>
 					<tr>
 						<td colspan="2" align="center" <%= if mobile_device? then "style='padding-top:2em'" end %>>
-						<input type="button" class="white button" onclick="<%= if defined?(func) and func then func + ";" end %><%= Settings.checkbox %>(this)" value="Submit" />
+						<input type="button" class="white button" onclick="<%= if defined?(func) and func then func + ";" end %><%= CHECKBOX %>(this)" value="Submit" />
 						</td>
 					</tr>
-					<% when Settings.textbox %>
+					<% when TEXTBOX %>
 					<% answer.each_with_index do |ans,idx| %>
 					<tr>
 						<% if ans %>
@@ -32,13 +32,13 @@
 					<% end %>
 					<tr>
 						<td colspan="2" align="center" <%= if mobile_device? then "style='padding-top:2em'" end %>>
-						<input type="button" class="white button" onclick="<%= if defined?(func) and func then func + ";" end %><%= Settings.textbox %>(this)" value="Submit" />
+						<input type="button" class="white button" onclick="<%= if defined?(func) and func then func + ";" end %><%= TEXTBOX %>(this)" value="Submit" />
 						</td>
 					</tr>
 					<% else %>
 					<tr>
 						<td> <% answer.each do |ans| %>
-						<input type="button" class="white button" value="<%= ans %>" onclick="<%= if defined?(func) and func then func + ";" end %><%= Settings.button %>(this)" />
+						<input type="button" class="white button" value="<%= ans %>" onclick="<%= if defined?(func) and func then func + ";" end %><%= BUTTON %>(this)" />
 						<% end %> </td>
 					</tr>
 					<% end %>
