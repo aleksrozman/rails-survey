@@ -9,6 +9,7 @@ function submitIt(element, answer) {
 	var id = getQuestionId(element);
 	var set = element.parents("div.set:eq(0)").attr('id');
 	var question = parent.children(".question").text().trim();
+	parent.children(".answer").fadeOut('slow');
 
 	$.ajax({
 		url : "/questions",
