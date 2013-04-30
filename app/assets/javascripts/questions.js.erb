@@ -8,7 +8,7 @@ function submitIt(element, answer) {
 	var parent = element.parents("div.qa:eq(0)");
 	var id = getQuestionId(element);
 	var set = element.parents("div.set:eq(0)").attr('id');
-	var question = parent.children(".question").text();
+	var question = parent.children(".question").text().trim();
 
 	$.ajax({
 		url : "/questions",
